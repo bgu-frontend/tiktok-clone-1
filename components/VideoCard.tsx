@@ -90,7 +90,7 @@ const VideoCard: NextPage<Props> = ({ post }) => {
           </Link>
           {/* buttons */}
           {isHover && (
-            <div>
+            <div className=" absolute flex gap-10 bottom-6 p-3 cursor-pointer left-10 md:left-11 lg:left-0 w-[100px] md:w-[50px]  ">
               {playing ? (
                 <button>
                   <BsFillPauseFill
