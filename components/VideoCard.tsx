@@ -10,8 +10,34 @@ type Props = { post: VideoPost };
 
 const VideoCard: NextPage<Props> = ({ post }) => {
   const [isHover, setIsHover] = useState(false);
+
+  // MANIPULATE VIDEO
   const [playing, setPlaying] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const onPlayBtnVideoPress = () => {
+    if (playing) {
+      videoRef.current?.pause();
+      setPlaying(false);
+    } else {
+      videoRef.current?.play();
+      setPlaying(true);
+    }
+  };
+
+  const onSoundBtnVideoPress = () => {
+    if (videoRef.current) {
+      if (isVideoMuted) {
+        videoRef.current.muted = false;
+        setIsVideoMuted(false);
+      } else {
+        videoRef.current.muted = true;
+        setIsVideoMuted(true);
+      }
+    }
+  };
 
   return (
     <div className="flex flex-col border-b-2 border-gray-200 pb-6">
@@ -57,6 +83,7 @@ const VideoCard: NextPage<Props> = ({ post }) => {
           <Link href="/">
             <video
               src={post.video.asset.url}
+              ref={videoRef}
               loop
               className="w-[200px] h-[300px]  md:h-[400px] lg:w-[600px] lg:h-[530px] rounded-2xl cursor-pointer bg-gray-100"
             ></video>
@@ -66,20 +93,32 @@ const VideoCard: NextPage<Props> = ({ post }) => {
             <div>
               {playing ? (
                 <button>
-                  <BsFillPauseFill className="text-black text-2xl lg:text-4xl" />
+                  <BsFillPauseFill
+                    onClick={onPlayBtnVideoPress}
+                    className="text-black text-2xl lg:text-4xl"
+                  />
                 </button>
               ) : (
                 <button>
-                  <BsFillPauseFill className="text-black text-2xl lg:text-4xl" />
+                  <BsFillPlayFill
+                    onClick={onPlayBtnVideoPress}
+                    className="text-black text-2xl lg:text-4xl"
+                  />
                 </button>
               )}
               {isVideoMuted ? (
                 <button>
-                  <HiVolumeOff className="text-black text-2xl lg:text-4xl" />
+                  <HiVolumeOff
+                    onClick={onSoundBtnVideoPress}
+                    className="text-black text-2xl lg:text-4xl"
+                  />
                 </button>
               ) : (
                 <button>
-                  <HiVolumeUp className="text-black text-2xl lg:text-4xl" />
+                  <HiVolumeUp
+                    onClick={onSoundBtnVideoPress}
+                    className="text-black text-2xl lg:text-4xl"
+                  />
                 </button>
               )}
             </div>
