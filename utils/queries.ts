@@ -1,8 +1,8 @@
 export const allPostsQuery = () => {
   const query = `*[_type == "post"] | order(_createdAt desc){
     _id,
-     caption,
-       video{
+    caption,
+      video{
         asset->{
           _id,
           url
@@ -19,10 +19,10 @@ export const allPostsQuery = () => {
       comment,
       _key,
       postedBy->{
-      _id,
-      userName,
-      image
-    },
+        _id,
+        userName,
+        image
+      },
     }
   }`;
 
