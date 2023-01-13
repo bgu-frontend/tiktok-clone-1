@@ -1,15 +1,22 @@
 import type { NextPage } from "next";
 import { VideoPost } from "../types";
 import axios from "axios";
+import { NoResults, VideoCard } from "../components";
 
-interface IProps {
+type Props = {
   videos: VideoPost[];
-}
+};
 
-const Home: NextPage<IProps> = ({ videos }) => {
+const Home: NextPage<Props> = ({ videos }) => {
+  const isVideos = !!videos.length;
+
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    <div className="flex flex-col gap-10 videos h-full">
+      {isVideos ? (
+        videos.map((video) => <VideoCard post={video} key={video._id} />)
+      ) : (
+        <NoResults text={"No Videos"} />
+      )}
     </div>
   );
 };
