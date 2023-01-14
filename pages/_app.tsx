@@ -19,7 +19,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   }
 
   return (
-    <div>
+    <GoogleOAuthProvider
+      clientId={`${process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN}`}
+    >
       <Navbar />
       <div className="flex gap-6 md:gap-20">
         <div className="h-[92vh] overflow-hidden xl:overflow-auto">
@@ -29,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </div>
       </div>
-    </div>
+    </GoogleOAuthProvider>
   );
 }
 
