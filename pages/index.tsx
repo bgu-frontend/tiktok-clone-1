@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { VideoPost } from "../types";
-import axios from "axios";
+import customFetch from "../utils/axios";
 import { NoResults, VideoCard } from "../components";
 
 type Props = {
@@ -22,7 +22,7 @@ const Home: NextPage<Props> = ({ videos }) => {
 };
 
 export const getServerSideProps = async () => {
-  const response = await axios.get(`http://localhost:3000/api/post`);
+  const response = await customFetch.get("/api/post");
 
   return {
     props: {

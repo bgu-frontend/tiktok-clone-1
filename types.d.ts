@@ -34,3 +34,27 @@ export interface Asset {
   _id: string;
   url: string;
 }
+
+export interface DecodedGoogleJWT {
+  iss: string;
+  nbf: number;
+  aud: string;
+  sub: string;
+  email: string;
+  email_verified: boolean;
+  azp: string;
+  name: string;
+  picture: string;
+  given_name: string;
+  family_name: string;
+  iat: number;
+  exp: number;
+  jti: string;
+}
+
+export interface GoogleUserInfo {
+  _id: string;
+  _type: string;
+  userName: string;
+  image: string;
+}
