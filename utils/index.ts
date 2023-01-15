@@ -4,7 +4,11 @@ import jwtDecode from "jwt-decode";
 import { DecodedGoogleJWT, GoogleUserInfo } from "../types";
 import customFetch from "./axios";
 
-export const createOrGetUser = async (res: CredentialResponse) => {
+// Get user info from google auth, save it to the store, post it to db
+export const createOrGetUser = async (
+  res: CredentialResponse,
+  addUser: (user: GoogleUserInfo) => void
+) => {
   if (res.credential) {
     const decoded: DecodedGoogleJWT = jwtDecode(res.credential);
 
@@ -16,7 +20,9 @@ export const createOrGetUser = async (res: CredentialResponse) => {
       userName: name,
       image: picture,
     };
-
+    // adds to state.userProfile
+    addUser(user);
+    // createIfNotExists in sanity
     await customFetch.post("/api/auth", user);
   }
 };
