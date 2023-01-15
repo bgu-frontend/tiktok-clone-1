@@ -6,6 +6,7 @@ import { GoogleUserInfo } from "../types";
 interface UserState {
   userProfile: GoogleUserInfo | null;
   addUser: (user: GoogleUserInfo) => void;
+  removeUser: () => void;
 }
 
 const useAuthStore = create<UserState>()(
@@ -14,6 +15,7 @@ const useAuthStore = create<UserState>()(
       (set) => ({
         userProfile: null,
         addUser: (user) => set((state) => ({ userProfile: user })),
+        removeUser: () => set((state) => ({ userProfile: null })),
       }),
       { name: "auth" }
     )
