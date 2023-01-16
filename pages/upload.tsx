@@ -13,12 +13,16 @@ import { Button } from "../components";
 type Props = {};
 
 const Upload: NextPage<Props> = (props: Props) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [videoAsset, setVideoAsset] = useState<SanityAssetDocument>();
+  const { userProfile } = useAuthStore();
+  const router = useRouter();
 
+  const [isLoading, setIsLoading] = useState(false);
+  // Video upload
+  const [videoAsset, setVideoAsset] = useState<SanityAssetDocument>();
   const [wrongFileType, setWrongFileType] = useState(false);
 
   const uploadVideo: React.ChangeEventHandler<HTMLInputElement> = async (e) => {
+    setIsLoading(true);
     const files = e.target.files;
 
     const fileTypes = ["video/mp4", "video/webm", "video/ogg"];
@@ -40,9 +44,41 @@ const Upload: NextPage<Props> = (props: Props) => {
     }
   };
 
+  // Post upload form
+  const [caption, setCaption] = useState("");
+  const [category, setCategory] = useState(topics[0].name);
+  const [savingPost, setSavingPost] = useState(false);
+
+  const handlePost: React.MouseEventHandler<HTMLButtonElement> = async () => {
+    if (caption && videoAsset?._id) {
+      setSavingPost(true);
+      const document = {
+        _type: "post",
+        caption,
+        video: {
+          _type: "file",
+          asset: {
+            _type: "reference",
+            _ref: videoAsset._id,
+          },
+        },
+        userId: userProfile?._id,
+        postedBy: {
+          _type: "postedBy",
+          _ref: userProfile?._id,
+        },
+        topic: category,
+      };
+
+      await customFetch.post("/api/post", document);
+
+      router.push("/");
+    }
+  };
+
   return (
     <div className="flex w-full h-full absolute left-0 top-[60px] mb-10 pt-10 lg:pt-20 bg-gray-50 justify-center">
-      <div className="flex gap-6 flex-wrap justify-center items-center bg-white rounded-lg xl:h-[80vh] p-14 pt-6">
+      <div className="flex gap-6 flex-wrap justify-between items-center bg-white rounded-lg xl:h-[80vh] w-[60%] p-14 pt-6">
         <div>
           {/* Header */}
           <div>
@@ -84,7 +120,8 @@ const Upload: NextPage<Props> = (props: Props) => {
                         Less than 2GB
                       </p>
                       {/* Select File btn */}
-                      <p className="btn-upload">Select file</p>
+                      {/* <Button filled>Select file</Button> */}
+                      <p>Select file</p>
                     </div>
                     {/* hidden input */}
                     <input
@@ -114,8 +151,8 @@ const Upload: NextPage<Props> = (props: Props) => {
           <input
             type="text"
             id="text"
-            value=""
-            onChange={() => {}}
+            value={caption}
+            onChange={(e) => setCaption(e.target.value)}
             className="rounded outline-none border-2 border-gray-200 lg:p-4 p-2"
           />
           {/* Video Category Select */}
@@ -125,7 +162,7 @@ const Upload: NextPage<Props> = (props: Props) => {
           <select
             name="select"
             id="select"
-            onChange={() => {}}
+            onChange={(e) => setCategory(e.target.value)}
             className="rounded outline-none border-2 border-gray-200 lg:p-4 p-2 cursor-pointer"
           >
             {topics.map((topic, idx) => (
@@ -136,7 +173,7 @@ const Upload: NextPage<Props> = (props: Props) => {
           </select>
           <div className=" flex gap-6 mt-10">
             <Button onClick={() => {}}>Discard</Button>
-            <Button onClick={() => {}} filled>
+            <Button onClick={handlePost} filled>
               Post
             </Button>
           </div>

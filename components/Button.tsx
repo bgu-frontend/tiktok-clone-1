@@ -6,7 +6,7 @@ type Props = {
   width?: number;
   lgWidth?: number;
   className?: string;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 const Button: React.FC<PropsWithChildren<Props>> = ({
@@ -21,7 +21,11 @@ const Button: React.FC<PropsWithChildren<Props>> = ({
     filled ? "bg-[var(--primary-color)] text-white" : "border-gray-300 border-2"
   }`;
   return (
-    <button onClick={onClick} type="button" className={className || btnClasses}>
+    <button
+      onClick={onClick && ((e) => onClick(e))}
+      type="button"
+      className={className || btnClasses}
+    >
       {children}
     </button>
   );
