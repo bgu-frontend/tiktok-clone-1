@@ -26,7 +26,7 @@ const Navbar = () => {
           />
         </div>
       </Link>
-      <div>SEARCH</div>
+      {/* <div>SEARCH</div> */}
       <div>
         {/* Buttons for logged user */}
         {userProfile ? (

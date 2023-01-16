@@ -36,7 +36,7 @@ const Sidebar = () => {
           </div>
 
           <Discover />
-          <SuggestedAccounts />
+          {/* <SuggestedAccounts /> */}
           <Footer />
         </div>
       )}
