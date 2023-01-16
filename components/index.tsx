@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import VideoCard from "./VideoCard";
 import NoResults from "./NoResults";
+import Button from "./Button";
 
 export {
   SuggestedAccounts,
@@ -14,4 +15,5 @@ export {
   Sidebar,
   VideoCard,
   NoResults,
+  Button,
 };

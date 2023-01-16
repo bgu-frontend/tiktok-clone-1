@@ -8,6 +8,7 @@ import { IoMdAdd } from "react-icons/io";
 import Logo from "../utils/tiktik-logo.png";
 import { createOrGetUser } from "../utils";
 import useAuthStore from "../store/authStore";
+import { Button } from "../components";
 
 const Navbar = () => {
   const user = false;
@@ -32,10 +33,10 @@ const Navbar = () => {
           <div className="flex gap-5 md:gap-10">
             {/* Upload button */}
             <Link href="/upload">
-              <button className="flex items-center gap-2 border-2 px-2 md:px-4 text-md font-semibold ">
+              <Button className="flex items-center gap-2 border-2 px-2 md:px-4 font-semibold">
                 <IoMdAdd className=" text-xl" />
                 <span className="hidden md:block">Upload</span>
-              </button>
+              </Button>
             </Link>
             {/* User Profile Image */}
             {userProfile.image && (

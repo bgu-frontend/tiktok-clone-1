@@ -7,6 +7,8 @@ import useAuthStore from "../store/authStore";
 import customFetch from "../utils/axios";
 import { client } from "../utils/client";
 import { SanityAssetDocument } from "@sanity/client";
+import { topics } from "../utils/constants";
+import { Button } from "../components";
 
 type Props = {};
 
@@ -39,8 +41,8 @@ const Upload: NextPage<Props> = (props: Props) => {
   };
 
   return (
-    <div className="flex w-full h-full absolute left-0 top-[60px] mb-10 pt-10 lg:pt-20 bg-gray-50 justify center">
-      <div className=" bg-white rounded-lg">
+    <div className="flex w-full h-full absolute left-0 top-[60px] mb-10 pt-10 lg:pt-20 bg-gray-50 justify-center">
+      <div className="flex gap-6 flex-wrap justify-center items-center bg-white rounded-lg xl:h-[80vh] p-14 pt-6">
         <div>
           {/* Header */}
           <div>
@@ -82,12 +84,7 @@ const Upload: NextPage<Props> = (props: Props) => {
                         Less than 2GB
                       </p>
                       {/* Select File btn */}
-                      <p
-                        className=" bg-[var(--primary-color)] text-center mt-10 rounded text-white text-md font-medium p-2 w-52 outline-none
-                  "
-                      >
-                        Select file
-                      </p>
+                      <p className="btn-upload">Select file</p>
                     </div>
                     {/* hidden input */}
                     <input
@@ -108,9 +105,41 @@ const Upload: NextPage<Props> = (props: Props) => {
             )}
           </div>
         </div>
-        {/* FORM */}
+        {/* FORM for video description */}
         <div className="flex flex-col gap-3 pb-10">
-          <label className="font-medium">Caption</label>
+          {/* Caption text input */}
+          <label htmlFor="text" className="font-medium">
+            Caption
+          </label>
+          <input
+            type="text"
+            id="text"
+            value=""
+            onChange={() => {}}
+            className="rounded outline-none border-2 border-gray-200 lg:p-4 p-2"
+          />
+          {/* Video Category Select */}
+          <label className="font-medium" htmlFor="select">
+            Choose a Category
+          </label>
+          <select
+            name="select"
+            id="select"
+            onChange={() => {}}
+            className="rounded outline-none border-2 border-gray-200 lg:p-4 p-2 cursor-pointer"
+          >
+            {topics.map((topic, idx) => (
+              <option key={idx} value={topic.name}>
+                {topic.name}
+              </option>
+            ))}
+          </select>
+          <div className=" flex gap-6 mt-10">
+            <Button onClick={() => {}}>Discard</Button>
+            <Button onClick={() => {}} filled>
+              Post
+            </Button>
+          </div>
         </div>
       </div>
     </div>
