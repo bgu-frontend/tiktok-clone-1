@@ -11,7 +11,7 @@ const Sidebar = () => {
   const userProfile = false;
 
   const normalLink =
-    "flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#F51997] rounded";
+    "flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[var(--primary-color)] rounded";
   return (
     <div>
       {/* Toggle sidebar btn */}
@@ -45,7 +45,7 @@ const Sidebar = () => {
                   clientId=""
                   render={(renderProps) => (
                     <button
-                      className="cursor-pointer bg-white text-lg text-[#F51997] border-[1px] border-[#F51997] font-semibold px-6 py-3 rounded-md outline-none w-full mt-3 hover:text-white hover:bg-[#F51997] transition duration-300"
+                      className="cursor-pointer bg-white text-lg text-[var(--primary-color)] border-[1px] border-[var(--primary-color)] font-semibold px-6 py-3 rounded-md outline-none w-full mt-3 hover:text-white hover:bg-[var(--primary-color)] transition duration-300"
                       onClick={renderProps.onClick}
                       disabled={renderProps.disabled}
                     >
