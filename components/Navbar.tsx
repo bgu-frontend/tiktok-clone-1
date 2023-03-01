@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import { useRouter } from "next/router";
@@ -22,8 +22,11 @@ const Navbar = () => {
             className="cursor-pointer"
             src={Logo}
             alt="TikTik"
-            layout="responsive"
-          />
+            sizes="100vw"
+            style={{
+              width: "100%",
+              height: "auto"
+            }} />
         </div>
       </Link>
       {/* <div>SEARCH</div> */}
@@ -48,7 +51,10 @@ const Navbar = () => {
                     className=" cursor-pointer rounded-full"
                     src={userProfile.image}
                     alt="profile photo"
-                  />
+                    style={{
+                      maxWidth: "100%",
+                      height: "auto"
+                    }} />
                 </>
               </Link>
             )}

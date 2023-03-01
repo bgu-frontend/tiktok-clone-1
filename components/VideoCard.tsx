@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { NextPage } from "next";
 import { VideoPost } from "../types";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
 import { BsPlay, BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
@@ -27,8 +27,11 @@ const VideoCard: NextPage<Props> = ({ post }) => {
                   className="flex flex-col rounded-full"
                   src={post.postedBy.image}
                   alt="profile photo"
-                  layout="responsive"
-                />
+                  sizes="100vw"
+                  style={{
+                    width: "100%",
+                    height: "auto"
+                  }} />
               </>
             </Link>
           </div>
