@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import { useRouter } from "next/router";

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { NextPage } from "next";
 import { VideoPost } from "../types";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
 import { BsPlay, BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
