@@ -1,15 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { NextPage } from "next";
 import { VideoPost } from "../types";
 import Image from "next/image";
 import Link from "next/link";
-import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
-import { BsPlay, BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
 import { GoVerified } from "react-icons/go";
 type Props = { post: VideoPost };
 
-const VideoCard: NextPage<Props> = ({ post }) => {
-  const [isHover, setIsHover] = useState(false);
+const VideoCard: NextPage<Props> = ({ post }: { post: VideoPost }) => {
+  const [_isHover, setIsHover] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
 

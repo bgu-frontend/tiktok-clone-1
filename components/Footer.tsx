@@ -1,6 +1,5 @@
 import React from "react";
 import { footerList1, footerList2, footerList3 } from "../utils/constants";
-import type { AppProps } from "next/app";
 
 type ListProps = { items: string[]; mt: boolean };
 

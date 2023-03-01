@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { MouseEventHandler, useState } from "react";
+import { useState, useEffect } from "react";
 import { topics } from "../utils/constants";
 
 const Discover = () => {

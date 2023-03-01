@@ -7,13 +7,13 @@ type Props = {
   videos: VideoPost[];
 };
 
-const Home: NextPage<Props> = ({ videos }) => {
+const Home: NextPage<Props> = ({ videos }: { videos: VideoPost[]}) => {
   const isVideos = !!videos.length;
 
   return (
     <div className="flex flex-col gap-10 videos h-full">
       {isVideos ? (
-        videos.map((video) => <VideoCard post={video} key={video._id} />)
+        videos.map((video: VideoPost) => <VideoCard post={video} key={video._id} />)
       ) : (
         <NoResults text={"No Videos"} />
       )}

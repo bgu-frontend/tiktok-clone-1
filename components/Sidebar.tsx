@@ -1,10 +1,8 @@
-import { NextPage } from "next";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
 import { ImCancelCircle } from "react-icons/im";
 import { useState } from "react";
-import { Discover, SuggestedAccounts, Footer } from "./index";
+import { Discover, Footer } from "./index";
 
 const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useState(true);

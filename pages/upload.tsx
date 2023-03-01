@@ -1,8 +1,7 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
 import useAuthStore from "../store/authStore";
 import customFetch from "../utils/axios";
 import { client } from "../utils/client";
@@ -34,7 +33,6 @@ const Upload: NextPage<Props> = (props: Props) => {
           contentType: selectedFile.type,
           filename: selectedFile.name,
         });
-
         setVideoAsset(data);
         setIsLoading(false);
       } else {
